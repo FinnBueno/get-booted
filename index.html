@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Bye bye</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #D4E4FA;
+    }
+
+    .outer {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .loadbar {
+      max-width: 500px;
+      width: 100%;
+      margin: 8px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      background-color: white;
+      padding: 4px 0;
+      position: relative;
+      overflow: hidden;
+      font-weight: bold;
+    }
+
+    #progress {
+      position: absolute;
+      background-color: #89D9FF;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 30%;
+
+      background: -webkit-linear-gradient(left, #66C4F5 30%, #89D9FF 80%, #66C4F5 100%) repeat;
+      -webkit-background-size: 50% 100%;
+      -webkit-animation-name: moving-gradient;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+    }
+
+    @-webkit-keyframes moving-gradient {
+      0% {
+        background-position: left bottom;
+      }
+
+      100% {
+        background-position: right bottom;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <p>Getting booted from Kabood in...</p>
+    <div class="loadbar" id="loadbar">
+      <div id="progress">
+      </div>
+      <p style="z-index: 10;" id="progresstext">45%</p>
+    </div>
+    <p id="days"></p>
+  </div>
+  <script>
+    document.getElementById('progress').style.width = '60%'
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    const today = new Date();
+    const target = new Date(2024, 5, 24);
+
+    const diffDays = Math.round(Math.abs((today - target) / oneDay));
+    document.getElementById('progress').style.width = ((75 - diffDays) / 75 * 100) + '%'
+    document.getElementById('progresstext').textContent = Math.floor((75 - diffDays) / 75 * 100) + '%'
+    document.getElementById('days').textContent = diffDays + ' days'
+  </script>
+</body>
+
+</html>
