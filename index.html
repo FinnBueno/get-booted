@@ -84,7 +84,7 @@
     document.getElementById('progress').style.width = '60%'
     const oneDay = 24 * 60 * 60 * 1000;
     const today = new Date();
-    const target = new Date(2024, 5, 31);
+    const target = new Date(2024, 4, 31);
 
     const diffDays = Math.round(Math.abs((today - target) / oneDay));
     document.getElementById('progress').style.width = ((82 - diffDays) / 82 * 100) + '%'
